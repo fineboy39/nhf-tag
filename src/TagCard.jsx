@@ -12,6 +12,16 @@ export default function TagCard() {
   const [isGenerating, setIsGenerating] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [formErrors, setFormErrors] = useState({});
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+
+  // Check screen size for responsive layout
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Auto-capitalize function for name (capitalizes first letter of each word)
   const capitalizeName = (str) => {
@@ -27,8 +37,6 @@ export default function TagCard() {
   const handleNameChange = (e) => {
     const input = e.target.value;
     setName(input);
-    // We don't auto-capitalize during typing to avoid cursor jumping
-    // Capitalization will happen on blur
   };
 
   const handleLgaChange = (e) => {
@@ -58,13 +66,11 @@ export default function TagCard() {
   const handleImageUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
-      // Validate file type
       if (!file.type.match('image.*')) {
         alert("Please upload an image file");
         return;
       }
       
-      // Validate file size (max 5MB)
       if (file.size > 5 * 1024 * 1024) {
         alert("Image size should be less than 5MB");
         return;
@@ -102,8 +108,6 @@ export default function TagCard() {
         allowTaint: true,
         useCORS: true,
         logging: false,
-        windowWidth: cardRef.current.offsetWidth,
-        windowHeight: cardRef.current.offsetHeight,
       });
       
       return new Promise((resolve) => {
@@ -192,33 +196,36 @@ export default function TagCard() {
       alignItems: "center",
       justifyContent: "center",
       background: "linear-gradient(145deg, #f8fafc 0%, #eef2f6 100%)",
-      padding: "24px",
+      padding: isMobile ? "12px" : "24px",
       fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
     },
     mainCard: {
       maxWidth: "1200px",
       width: "100%",
       display: "grid",
-      gridTemplateColumns: "1fr 1fr",
-      gap: "40px",
+      gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+      gap: isMobile ? "24px" : "40px",
       background: "white",
-      borderRadius: "48px",
-      padding: "40px",
+      borderRadius: isMobile ? "32px" : "48px",
+      padding: isMobile ? "20px" : "40px",
       boxShadow: "0 25px 50px -12px rgba(0,0,0,0.25)",
     },
     leftSection: {
-      paddingRight: "40px",
-      borderRight: "1px solid #e9eef2",
+      paddingRight: isMobile ? "0" : "40px",
+      borderRight: isMobile ? "none" : "1px solid #e9eef2",
+      order: isMobile ? 2 : 1,
     },
     rightSection: {
       display: "flex",
       flexDirection: "column",
+      order: isMobile ? 1 : 2,
     },
     header: {
-      marginBottom: "32px",
+      marginBottom: isMobile ? "24px" : "32px",
+      textAlign: isMobile ? "center" : "left",
     },
     title: {
-      fontSize: "36px",
+      fontSize: isMobile ? "28px" : "36px",
       fontWeight: "800",
       background: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)",
       WebkitBackgroundClip: "text",
@@ -229,23 +236,23 @@ export default function TagCard() {
     },
     subtitle: {
       color: "#5b6775",
-      fontSize: "16px",
+      fontSize: isMobile ? "14px" : "16px",
       fontWeight: "400",
       lineHeight: 1.6,
     },
     formGroup: {
-      marginBottom: "24px",
+      marginBottom: isMobile ? "20px" : "24px",
     },
     label: {
       display: "block",
       marginBottom: "8px",
-      fontSize: "14px",
+      fontSize: isMobile ? "13px" : "14px",
       fontWeight: "600",
       color: "#2d3a4a",
       letterSpacing: "0.02em",
     },
     uploadArea: {
-      marginBottom: "24px",
+      marginBottom: isMobile ? "20px" : "24px",
     },
     uploadLabel: {
       display: "flex",
@@ -253,7 +260,7 @@ export default function TagCard() {
       alignItems: "center",
       justifyContent: "center",
       width: "100%",
-      height: "180px",
+      height: isMobile ? "150px" : "180px",
       border: `2px dashed ${formErrors.image ? '#ef4444' : '#cbd5e0'}`,
       borderRadius: "24px",
       cursor: "pointer",
@@ -263,19 +270,19 @@ export default function TagCard() {
       position: "relative",
     },
     uploadIcon: {
-      fontSize: "40px",
+      fontSize: isMobile ? "36px" : "40px",
       color: "#2a5298",
       marginBottom: "12px",
     },
     uploadText: {
       color: "#2d3a4a",
-      fontSize: "16px",
+      fontSize: isMobile ? "14px" : "16px",
       fontWeight: "600",
       marginBottom: "4px",
     },
     uploadHint: {
       color: "#8b9aab",
-      fontSize: "13px",
+      fontSize: isMobile ? "12px" : "13px",
     },
     previewImage: {
       width: "100%",
@@ -284,8 +291,8 @@ export default function TagCard() {
     },
     input: {
       width: "100%",
-      padding: "14px 18px",
-      fontSize: "15px",
+      padding: isMobile ? "12px 16px" : "14px 18px",
+      fontSize: isMobile ? "14px" : "15px",
       border: `2px solid ${formErrors.name || formErrors.lga || formErrors.state ? '#ef4444' : '#e2e8f0'}`,
       borderRadius: "16px",
       outline: "none",
@@ -303,22 +310,24 @@ export default function TagCard() {
     // WhatsApp Status optimized card (9:16 aspect ratio)
     tagCard: {
       width: "100%",
-      aspectRatio: "9/16", // Perfect for WhatsApp Status
-      borderRadius: "32px",
+      maxWidth: isMobile ? "320px" : "100%",
+      margin: "0 auto",
+      aspectRatio: "9/16",
+      borderRadius: isMobile ? "28px" : "32px",
       overflow: "hidden",
       backgroundImage: `url(${nhfBg})`,
       backgroundSize: "cover",
       backgroundPosition: "center",
       boxShadow: "0 20px 35px -8px rgba(0,0,0,0.3)",
       transition: "transform 0.3s ease",
-      marginBottom: "24px",
+      marginBottom: isMobile ? "16px" : "24px",
       position: "relative",
     },
     tagCardContent: {
       background: "linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.6) 100%)",
       backdropFilter: "blur(2px)",
       height: "100%",
-      padding: "24px 16px",
+      padding: isMobile ? "16px 12px" : "24px 16px",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -328,22 +337,22 @@ export default function TagCard() {
     },
     badge: {
       background: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)",
-      padding: "8px 16px",
+      padding: isMobile ? "6px 12px" : "8px 16px",
       borderRadius: "100px",
-      marginBottom: "8px",
+      marginBottom: isMobile ? "4px" : "8px",
       display: "inline-block",
       boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
     },
     badgeText: {
       color: "white",
-      fontSize: "14px",
+      fontSize: isMobile ? "12px" : "14px",
       fontWeight: "700",
       letterSpacing: "0.5px",
       textShadow: "0 1px 2px rgba(0,0,0,0.2)",
     },
     fellowTitle: {
       color: "#1e3c72",
-      fontSize: "24px",
+      fontSize: isMobile ? "20px" : "24px",
       fontWeight: "800",
       marginBottom: "4px",
       letterSpacing: "-0.01em",
@@ -352,21 +361,21 @@ export default function TagCard() {
       textShadow: "0 1px 3px rgba(255,255,255,0.8)",
     },
     profileImage: {
-      width: "180px", // Larger for status view
-      height: "180px",
+      width: isMobile ? "140px" : "180px",
+      height: isMobile ? "140px" : "180px",
       borderRadius: "50%",
       objectFit: "cover",
       border: "4px solid white",
       boxShadow: "0 15px 30px -5px rgba(0,0,0,0.3)",
       transition: "transform 0.2s ease",
-      margin: "16px 0",
+      margin: isMobile ? "8px 0" : "16px 0",
       filter: "brightness(1.02) contrast(1.02)",
     },
     announcementMessage: {
       background: "linear-gradient(135deg, rgba(30,60,114,0.15) 0%, rgba(42,82,152,0.15) 100%)",
-      padding: "14px 18px",
+      padding: isMobile ? "10px 12px" : "14px 18px",
       borderRadius: "24px",
-      marginBottom: "16px",
+      marginBottom: isMobile ? "12px" : "16px",
       textAlign: "center",
       border: "1px solid rgba(42,82,152,0.25)",
       width: "100%",
@@ -374,7 +383,7 @@ export default function TagCard() {
       boxShadow: "0 4px 8px rgba(0,0,0,0.05)",
     },
     announcementText: {
-      fontSize: "15px",
+      fontSize: isMobile ? "13px" : "15px",
       fontWeight: "600",
       color: "#1e3c72",
       lineHeight: 1.5,
@@ -382,49 +391,53 @@ export default function TagCard() {
       textShadow: "0 1px 2px rgba(255,255,255,0.5)",
     },
     nameDisplay: {
-      fontSize: "24px",
+      fontSize: isMobile ? "20px" : "24px",
       fontWeight: "700",
       color: "#1e293b",
       marginBottom: "4px",
       textAlign: "center",
       lineHeight: 1.2,
       textShadow: "0 1px 3px rgba(255,255,255,0.8)",
+      wordBreak: "break-word",
+      padding: "0 8px",
     },
     roleText: {
-      fontSize: "14px",
+      fontSize: isMobile ? "12px" : "14px",
       color: "#2d3a4a",
       fontWeight: "600",
-      marginBottom: "8px",
+      marginBottom: "6px",
       textShadow: "0 1px 2px rgba(255,255,255,0.5)",
     },
     locationText: {
-      fontSize: "15px",
+      fontSize: isMobile ? "13px" : "15px",
       color: "#ffffff",
       fontWeight: "700",
       background: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)",
-      padding: "8px 20px",
+      padding: isMobile ? "6px 16px" : "8px 20px",
       borderRadius: "100px",
       display: "inline-block",
       boxShadow: "0 6px 15px rgba(0,0,0,0.2)",
       border: "1px solid rgba(255,255,255,0.3)",
       letterSpacing: "0.5px",
+      wordBreak: "break-word",
+      maxWidth: "90%",
     },
     hashtags: {
-      marginTop: "12px",
-      fontSize: "12px",
+      marginTop: isMobile ? "8px" : "12px",
+      fontSize: isMobile ? "10px" : "12px",
       color: "#1e3c72",
       fontWeight: "600",
       letterSpacing: "0.3px",
       textShadow: "0 1px 2px rgba(255,255,255,0.5)",
       background: "rgba(255,255,255,0.5)",
-      padding: "6px 16px",
+      padding: isMobile ? "4px 12px" : "6px 16px",
       borderRadius: "100px",
       display: "inline-block",
     },
     developerCredit: {
-      fontSize: "10px",
+      fontSize: isMobile ? "9px" : "10px",
       color: "#4a5568",
-      marginTop: "8px",
+      marginTop: "6px",
       textAlign: "center",
       fontWeight: "500",
       letterSpacing: "0.3px",
@@ -436,15 +449,16 @@ export default function TagCard() {
     },
     buttonGroup: {
       display: "flex",
-      gap: "12px",
+      flexDirection: isMobile ? "column" : "row",
+      gap: isMobile ? "10px" : "12px",
       marginTop: "auto",
     },
     button: {
       flex: 1,
-      padding: "16px 24px",
+      padding: isMobile ? "14px 20px" : "16px 24px",
       border: "none",
       borderRadius: "18px",
-      fontSize: "15px",
+      fontSize: isMobile ? "14px" : "15px",
       fontWeight: "600",
       cursor: "pointer",
       transition: "all 0.2s ease",
@@ -453,6 +467,7 @@ export default function TagCard() {
       justifyContent: "center",
       gap: "8px",
       fontFamily: "inherit",
+      width: "100%",
     },
     whatsappButton: {
       background: "#25D366",
@@ -466,20 +481,28 @@ export default function TagCard() {
     },
     successMessage: {
       position: "fixed",
-      top: "24px",
-      right: "24px",
+      top: isMobile ? "16px" : "24px",
+      right: isMobile ? "16px" : "24px",
+      left: isMobile ? "16px" : "auto",
       background: "#10b981",
       color: "white",
-      padding: "16px 28px",
+      padding: isMobile ? "12px 20px" : "16px 28px",
       borderRadius: "100px",
-      fontSize: "15px",
+      fontSize: isMobile ? "13px" : "15px",
       fontWeight: "500",
       boxShadow: "0 10px 25px -5px rgba(16,185,129,0.4)",
       animation: "slideIn 0.3s ease",
       zIndex: 1000,
       display: "flex",
       alignItems: "center",
+      justifyContent: "center",
       gap: "8px",
+    },
+    inputRow: {
+      display: "grid",
+      gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
+      gap: isMobile ? "12px" : "12px",
+      marginBottom: "24px",
     },
   };
 
@@ -560,7 +583,7 @@ export default function TagCard() {
             )}
           </div>
 
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginBottom: "24px" }}>
+          <div style={styles.inputRow}>
             <div>
               <label style={styles.label}>LGA (Auto-capitalized)</label>
               <input
@@ -605,7 +628,9 @@ export default function TagCard() {
 
         {/* Right Section - Preview */}
         <div style={styles.rightSection}>
-          <label style={{ ...styles.label, marginBottom: "16px" }}>Preview (WhatsApp Status Size)</label>
+          <label style={{ ...styles.label, marginBottom: "16px", textAlign: isMobile ? "center" : "left" }}>
+            Preview (WhatsApp Status Size)
+          </label>
           
           {/* Tag Card */}
           <div ref={cardRef} style={styles.tagCard}>
@@ -631,7 +656,7 @@ export default function TagCard() {
                 </p>
               </div>
 
-              <div style={{ textAlign: "center" }}>
+              <div style={{ textAlign: "center", width: "100%" }}>
                 <h3 style={styles.nameDisplay}>
                   {capitalizeName(name) || "Your Name"}
                 </h3>
@@ -645,7 +670,7 @@ export default function TagCard() {
                 )}
               </div>
 
-              <div>
+              <div style={{ textAlign: "center" }}>
                 <div style={styles.hashtags}>
                   #NHFCohortII #PrimaryHealthcare
                 </div>
@@ -728,10 +753,10 @@ export default function TagCard() {
             <p style={{
               textAlign: "center",
               color: "#ef4444",
-              fontSize: "13px",
+              fontSize: isMobile ? "12px" : "13px",
               marginTop: "16px",
               background: "#fef2f2",
-              padding: "12px",
+              padding: isMobile ? "10px" : "12px",
               borderRadius: "12px",
             }}>
               ⚠️ Please fill in all required fields
