@@ -213,12 +213,12 @@ export default function TagCard() {
     leftSection: {
       paddingRight: isMobile ? "0" : "40px",
       borderRight: isMobile ? "none" : "1px solid #e9eef2",
-      order: isMobile ? 2 : 1,
+      order: isMobile ? 1 : 1, // Form first on mobile
     },
     rightSection: {
       display: "flex",
       flexDirection: "column",
-      order: isMobile ? 1 : 2,
+      order: isMobile ? 2 : 2, // Preview second on mobile
     },
     header: {
       marginBottom: isMobile ? "24px" : "32px",
@@ -310,10 +310,10 @@ export default function TagCard() {
     // WhatsApp Status optimized card (9:16 aspect ratio)
     tagCard: {
       width: "100%",
-      maxWidth: isMobile ? "320px" : "100%",
+      maxWidth: isMobile ? "280px" : "100%",
       margin: "0 auto",
       aspectRatio: "9/16",
-      borderRadius: isMobile ? "28px" : "32px",
+      borderRadius: isMobile ? "24px" : "32px",
       overflow: "hidden",
       backgroundImage: `url(${nhfBg})`,
       backgroundSize: "cover",
@@ -327,7 +327,7 @@ export default function TagCard() {
       background: "linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.6) 100%)",
       backdropFilter: "blur(2px)",
       height: "100%",
-      padding: isMobile ? "16px 12px" : "24px 16px",
+      padding: isMobile ? "12px 10px" : "24px 16px",
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
@@ -337,45 +337,45 @@ export default function TagCard() {
     },
     badge: {
       background: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)",
-      padding: isMobile ? "6px 12px" : "8px 16px",
+      padding: isMobile ? "4px 10px" : "8px 16px",
       borderRadius: "100px",
-      marginBottom: isMobile ? "4px" : "8px",
+      marginBottom: isMobile ? "2px" : "8px",
       display: "inline-block",
       boxShadow: "0 4px 10px rgba(0,0,0,0.15)",
     },
     badgeText: {
       color: "white",
-      fontSize: isMobile ? "12px" : "14px",
+      fontSize: isMobile ? "10px" : "14px",
       fontWeight: "700",
       letterSpacing: "0.5px",
       textShadow: "0 1px 2px rgba(0,0,0,0.2)",
     },
     fellowTitle: {
       color: "#1e3c72",
-      fontSize: isMobile ? "20px" : "24px",
+      fontSize: isMobile ? "16px" : "24px",
       fontWeight: "800",
-      marginBottom: "4px",
+      marginBottom: "2px",
       letterSpacing: "-0.01em",
       textAlign: "center",
       lineHeight: 1.2,
       textShadow: "0 1px 3px rgba(255,255,255,0.8)",
     },
     profileImage: {
-      width: isMobile ? "140px" : "180px",
-      height: isMobile ? "140px" : "180px",
+      width: isMobile ? "100px" : "180px",
+      height: isMobile ? "100px" : "180px",
       borderRadius: "50%",
       objectFit: "cover",
-      border: "4px solid white",
-      boxShadow: "0 15px 30px -5px rgba(0,0,0,0.3)",
+      border: "3px solid white",
+      boxShadow: "0 10px 20px -5px rgba(0,0,0,0.3)",
       transition: "transform 0.2s ease",
-      margin: isMobile ? "8px 0" : "16px 0",
+      margin: isMobile ? "4px 0" : "16px 0",
       filter: "brightness(1.02) contrast(1.02)",
     },
     announcementMessage: {
       background: "linear-gradient(135deg, rgba(30,60,114,0.15) 0%, rgba(42,82,152,0.15) 100%)",
-      padding: isMobile ? "10px 12px" : "14px 18px",
-      borderRadius: "24px",
-      marginBottom: isMobile ? "12px" : "16px",
+      padding: isMobile ? "6px 8px" : "14px 18px",
+      borderRadius: "16px",
+      marginBottom: isMobile ? "6px" : "16px",
       textAlign: "center",
       border: "1px solid rgba(42,82,152,0.25)",
       width: "100%",
@@ -383,66 +383,66 @@ export default function TagCard() {
       boxShadow: "0 4px 8px rgba(0,0,0,0.05)",
     },
     announcementText: {
-      fontSize: isMobile ? "13px" : "15px",
+      fontSize: isMobile ? "10px" : "15px",
       fontWeight: "600",
       color: "#1e3c72",
-      lineHeight: 1.5,
+      lineHeight: 1.4,
       marginBottom: "2px",
       textShadow: "0 1px 2px rgba(255,255,255,0.5)",
     },
     nameDisplay: {
-      fontSize: isMobile ? "20px" : "24px",
+      fontSize: isMobile ? "14px" : "24px",
       fontWeight: "700",
       color: "#1e293b",
-      marginBottom: "4px",
+      marginBottom: "2px",
       textAlign: "center",
       lineHeight: 1.2,
       textShadow: "0 1px 3px rgba(255,255,255,0.8)",
       wordBreak: "break-word",
-      padding: "0 8px",
+      padding: "0 4px",
     },
     roleText: {
-      fontSize: isMobile ? "12px" : "14px",
+      fontSize: isMobile ? "9px" : "14px",
       color: "#2d3a4a",
       fontWeight: "600",
-      marginBottom: "6px",
+      marginBottom: "4px",
       textShadow: "0 1px 2px rgba(255,255,255,0.5)",
     },
     locationText: {
-      fontSize: isMobile ? "13px" : "15px",
+      fontSize: isMobile ? "10px" : "15px",
       color: "#ffffff",
       fontWeight: "700",
       background: "linear-gradient(135deg, #1e3c72 0%, #2a5298 100%)",
-      padding: isMobile ? "6px 16px" : "8px 20px",
+      padding: isMobile ? "4px 10px" : "8px 20px",
       borderRadius: "100px",
       display: "inline-block",
-      boxShadow: "0 6px 15px rgba(0,0,0,0.2)",
+      boxShadow: "0 4px 10px rgba(0,0,0,0.2)",
       border: "1px solid rgba(255,255,255,0.3)",
       letterSpacing: "0.5px",
       wordBreak: "break-word",
       maxWidth: "90%",
     },
     hashtags: {
-      marginTop: isMobile ? "8px" : "12px",
-      fontSize: isMobile ? "10px" : "12px",
+      marginTop: isMobile ? "4px" : "12px",
+      fontSize: isMobile ? "8px" : "12px",
       color: "#1e3c72",
       fontWeight: "600",
       letterSpacing: "0.3px",
       textShadow: "0 1px 2px rgba(255,255,255,0.5)",
       background: "rgba(255,255,255,0.5)",
-      padding: isMobile ? "4px 12px" : "6px 16px",
+      padding: isMobile ? "3px 8px" : "6px 16px",
       borderRadius: "100px",
       display: "inline-block",
     },
     developerCredit: {
-      fontSize: isMobile ? "9px" : "10px",
+      fontSize: isMobile ? "7px" : "10px",
       color: "#4a5568",
-      marginTop: "6px",
+      marginTop: "4px",
       textAlign: "center",
       fontWeight: "500",
       letterSpacing: "0.3px",
       background: "rgba(255,255,255,0.3)",
-      padding: "4px 12px",
+      padding: "2px 8px",
       borderRadius: "100px",
       display: "inline-block",
       backdropFilter: "blur(2px)",
@@ -455,17 +455,17 @@ export default function TagCard() {
     },
     button: {
       flex: 1,
-      padding: isMobile ? "14px 20px" : "16px 24px",
+      padding: isMobile ? "12px 16px" : "16px 24px",
       border: "none",
       borderRadius: "18px",
-      fontSize: isMobile ? "14px" : "15px",
+      fontSize: isMobile ? "13px" : "15px",
       fontWeight: "600",
       cursor: "pointer",
       transition: "all 0.2s ease",
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      gap: "8px",
+      gap: "6px",
       fontFamily: "inherit",
       width: "100%",
     },
@@ -486,9 +486,9 @@ export default function TagCard() {
       left: isMobile ? "16px" : "auto",
       background: "#10b981",
       color: "white",
-      padding: isMobile ? "12px 20px" : "16px 28px",
+      padding: isMobile ? "10px 16px" : "16px 28px",
       borderRadius: "100px",
-      fontSize: isMobile ? "13px" : "15px",
+      fontSize: isMobile ? "12px" : "15px",
       fontWeight: "500",
       boxShadow: "0 10px 25px -5px rgba(16,185,129,0.4)",
       animation: "slideIn 0.3s ease",
@@ -496,13 +496,21 @@ export default function TagCard() {
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      gap: "8px",
+      gap: "6px",
     },
     inputRow: {
       display: "grid",
       gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
       gap: isMobile ? "12px" : "12px",
       marginBottom: "24px",
+    },
+    previewLabel: {
+      ...styles?.label,
+      marginBottom: "16px",
+      textAlign: isMobile ? "center" : "left",
+      fontSize: isMobile ? "14px" : "14px",
+      fontWeight: "600",
+      color: "#2d3a4a",
     },
   };
 
@@ -515,7 +523,7 @@ export default function TagCard() {
       )}
 
       <div style={styles.mainCard}>
-        {/* Left Section - Form */}
+        {/* Left Section - Form (Now on top for mobile) */}
         <div style={styles.leftSection}>
           <div style={styles.header}>
             <h1 style={styles.title}>Create Your<br />NHF Identity Tag</h1>
@@ -626,9 +634,9 @@ export default function TagCard() {
           </div>
         </div>
 
-        {/* Right Section - Preview */}
+        {/* Right Section - Preview (Now below for mobile) */}
         <div style={styles.rightSection}>
-          <label style={{ ...styles.label, marginBottom: "16px", textAlign: isMobile ? "center" : "left" }}>
+          <label style={styles.previewLabel}>
             Preview (WhatsApp Status Size)
           </label>
           
@@ -707,10 +715,10 @@ export default function TagCard() {
                 <>⏳ Generating...</>
               ) : (
                 <>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M19.05 4.91A9.816 9.816 0 0 0 12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01zm-7.01 15.24c-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.32a8.19 8.19 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.83c.02 4.54-3.68 8.24-8.22 8.24z"/>
                   </svg>
-                  Share to WhatsApp
+                  {isMobile ? "Share" : "Share to WhatsApp"}
                 </>
               )}
             </button>
@@ -739,10 +747,10 @@ export default function TagCard() {
                 <>⏳ Generating...</>
               ) : (
                 <>
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
                   </svg>
-                  Download Image
+                  {isMobile ? "Download" : "Download Image"}
                 </>
               )}
             </button>
@@ -753,10 +761,10 @@ export default function TagCard() {
             <p style={{
               textAlign: "center",
               color: "#ef4444",
-              fontSize: isMobile ? "12px" : "13px",
+              fontSize: isMobile ? "11px" : "13px",
               marginTop: "16px",
               background: "#fef2f2",
-              padding: isMobile ? "10px" : "12px",
+              padding: isMobile ? "8px" : "12px",
               borderRadius: "12px",
             }}>
               ⚠️ Please fill in all required fields
