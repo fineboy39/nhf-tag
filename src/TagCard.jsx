@@ -460,7 +460,7 @@ export default function TagCard() {
       gap: isMobile ? "6px" : "8px",
       fontSize: isMobile ? "9px" : "10px",
       color: "#475569",
-      marginTop: isMobile ? "4px" : "5px",
+      marginTop: isMobile ? "0px" : "2px",
       fontWeight: "600",
       letterSpacing: "0.2px",
       background: "rgba(255,255,255,0.7)",
