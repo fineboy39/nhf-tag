@@ -453,24 +453,25 @@ export default function TagCard() {
       display: "inline-block",
       border: "1px solid rgba(42,82,152,0.2)",
     },
-   developerCredit: {
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  gap: isMobile ? "6px" : "8px",
-  fontSize: isMobile ? "9px" : "10px",
-  color: "#475569",
-  // Adjusted: Changed from positive to negative to move it UP
-  marginTop: isMobile ? "-5px" : "-8px", 
-  fontWeight: "600",
-  letterSpacing: "0.2px",
-  background: "rgba(255,255,255,0.7)",
-  padding: isMobile ? "5px 10px" : "6px 12px",
-  borderRadius: "100px",
-  backdropFilter: "blur(4px)",
-  border: "1px solid rgba(71,85,105,0.15)",
-  boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
-},
+    developerCredit: {
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      gap: isMobile ? "4px" : "6px",
+      fontSize: isMobile ? "8px" : "10px",
+      color: "#475569",
+      marginTop: isMobile ? "4px" : "6px",
+      fontWeight: "600",
+      letterSpacing: "0.15px",
+      background: "rgba(255,255,255,0.8)",
+      padding: isMobile ? "4px 8px" : "6px 12px",
+      borderRadius: "100px",
+      backdropFilter: "blur(4px)",
+      border: "1px solid rgba(71,85,105,0.15)",
+      boxShadow: "0 2px 8px rgba(0,0,0,0.05)",
+      width: "auto",
+      maxWidth: "95%",
+    },
     swapLogo: {
       height: isMobile ? "16px" : "18px",
       width: "auto",
@@ -530,28 +531,30 @@ export default function TagCard() {
     },
     socialHandles: {
       display: "flex",
-      gap: isMobile ? "8px" : "10px",
+      gap: isMobile ? "4px" : "6px",
       alignItems: "center",
-      fontSize: isMobile ? "9px" : "10px",
+      fontSize: isMobile ? "7px" : "9px",
       color: "#64748b",
-      fontWeight: "500",
-      marginTop: "4px",
+      fontWeight: "600",
+      marginTop: "2px",
       flexWrap: "wrap",
       justifyContent: "center",
+      maxWidth: "100%",
     },
     socialLink: {
       display: "flex",
       alignItems: "center",
-      gap: "2px",
+      gap: isMobile ? "1px" : "2px",
       textDecoration: "none",
       color: "inherit",
-      padding: isMobile ? "3px 6px" : "4px 8px",
-      background: "rgba(255,255,255,0.5)",
+      padding: isMobile ? "2px 5px" : "3px 6px",
+      background: "rgba(255,255,255,0.6)",
       borderRadius: "100px",
       border: "1px solid rgba(100,116,139,0.2)",
       transition: "all 0.2s ease",
-      fontSize: isMobile ? "8px" : "9px",
+      fontSize: isMobile ? "7px" : "8px",
       fontWeight: "600",
+      whiteSpace: "nowrap",
     },
     buttonGroup: {
       display: "flex",
@@ -809,7 +812,7 @@ export default function TagCard() {
 
               {/* Profile Section with Logo Badge */}
               <div style={styles.profileSection}>
-                {image && (
+                {image ? (
                   <>
                     <img
                       src={image}
@@ -824,6 +827,29 @@ export default function TagCard() {
                       />
                     </div>
                   </>
+                ) : (
+                  <div style={{
+                    width: isMobile ? "120px" : "140px",
+                    height: isMobile ? "120px" : "140px",
+                    borderRadius: "50%",
+                    background: "linear-gradient(135deg, #e2e8f0 0%, #cbd5e0 100%)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    border: "4px solid white",
+                    boxShadow: "0 20px 40px -8px rgba(0,0,0,0.15)",
+                    margin: isMobile ? "4px 0" : "8px 0",
+                    position: "relative",
+                  }}>
+                    <span style={{ fontSize: "40px", opacity: 0.3 }}>👤</span>
+                    <div style={styles.swapLogoBadge}>
+                      <img 
+                        src={swapLogo} 
+                        alt="Swap" 
+                        style={styles.swapLogoProfile}
+                      />
+                    </div>
+                  </div>
                 )}
               </div>
 
@@ -854,21 +880,21 @@ export default function TagCard() {
                 
                 <div style={styles.developerCredit}>
                   <div style={styles.creditText}>
-                    <span>
-                      Developed by <span style={styles.developerName}>Shamsu Nafiu</span> (Cohort II)
+                    <span style={{ fontSize: isMobile ? "7px" : "9px" }}>
+                      By <span style={styles.developerName}>Shamsu Nafiu</span> (II)
                     </span>
                     <div style={styles.socialHandles}>
                       <span style={styles.socialLink}>
-                        <span>𝕏</span> @swapng
+                        𝕏 @swapng
                       </span>
                       <span style={styles.socialLink}>
-                        <span>📘</span> @swapng
+                        📘 @swapng
                       </span>
                       <span style={styles.socialLink}>
-                        <span>📷</span> @swap.ng
+                        📷 @swap.ng
                       </span>
                       <span style={styles.socialLink}>
-                        <span>🎵</span> @swap.ng
+                        🎵 @swap.ng
                       </span>
                     </div>
                   </div>
