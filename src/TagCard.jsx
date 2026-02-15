@@ -213,12 +213,12 @@ export default function TagCard() {
     leftSection: {
       paddingRight: isMobile ? "0" : "40px",
       borderRight: isMobile ? "none" : "1px solid #e9eef2",
-      order: isMobile ? 2 : 1,
+      order: isMobile ? 1 : 1, // Form first on mobile
     },
     rightSection: {
       display: "flex",
       flexDirection: "column",
-      order: isMobile ? 1 : 2,
+      order: isMobile ? 2 : 2, // Tag second on mobile
     },
     header: {
       marginBottom: isMobile ? "24px" : "32px",
@@ -310,7 +310,7 @@ export default function TagCard() {
     // WhatsApp Status optimized card (9:16 aspect ratio)
     tagCard: {
       width: "100%",
-      maxWidth: isMobile ? "320px" : "100%",
+      maxWidth: isMobile ? "100%" : "100%",
       margin: "0 auto",
       aspectRatio: "9/16",
       borderRadius: isMobile ? "28px" : "32px",
@@ -451,7 +451,7 @@ export default function TagCard() {
       display: "flex",
       flexDirection: isMobile ? "column" : "row",
       gap: isMobile ? "10px" : "12px",
-      marginTop: "auto",
+      marginTop: isMobile ? "16px" : "auto",
     },
     button: {
       flex: 1,
@@ -515,7 +515,7 @@ export default function TagCard() {
       )}
 
       <div style={styles.mainCard}>
-        {/* Left Section - Form */}
+        {/* Left Section - Form (Now first on mobile) */}
         <div style={styles.leftSection}>
           <div style={styles.header}>
             <h1 style={styles.title}>Create Your<br />NHF Identity Tag</h1>
@@ -626,7 +626,7 @@ export default function TagCard() {
           </div>
         </div>
 
-        {/* Right Section - Preview */}
+        {/* Right Section - Tag (Now second on mobile) */}
         <div style={styles.rightSection}>
           <label style={{ ...styles.label, marginBottom: "16px", textAlign: isMobile ? "center" : "left" }}>
             Preview (WhatsApp Status Size)
