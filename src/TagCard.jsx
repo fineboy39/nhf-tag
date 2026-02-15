@@ -804,6 +804,27 @@ export default function TagCard() {
           {/* Tag Card */}
           <div ref={cardRef} style={styles.tagCard}>
             <div style={styles.tagCardContent}>
+              {/* Developer Credit - Top */}
+              <div style={{
+                width: "100%",
+                textAlign: "center",
+                marginBottom: isMobile ? "4px" : "6px",
+              }}>
+                <div style={{
+                  display: "inline-block",
+                  background: "rgba(255,255,255,0.85)",
+                  padding: isMobile ? "4px 10px" : "5px 12px",
+                  borderRadius: "100px",
+                  fontSize: isMobile ? "7px" : "8px",
+                  color: "#475569",
+                  fontWeight: "600",
+                  border: "1px solid rgba(71,85,105,0.15)",
+                  boxShadow: "0 2px 6px rgba(0,0,0,0.08)",
+                }}>
+                  Developed by <span style={{ fontWeight: "700", color: "#1e293b" }}>Shamsu Nafiu</span> (Cohort II - Jigawa)
+                </div>
+              </div>
+
               {/* Top Section */}
               <div style={styles.topLogoSection}>
                 <div style={styles.badge}>
