@@ -488,8 +488,34 @@ export default function TagCard() {
       flexDirection: "column",
       alignItems: "center",
       gap: isMobile ? "4px" : "6px",
-      marginBottom: isMobile ? "8px" : "10px",
+      marginBottom: isMobile ? "6px" : "8px",
       width: "100%",
+    },
+    profileSection: {
+      position: "relative",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      marginBottom: isMobile ? "4px" : "6px",
+    },
+    swapLogoBadge: {
+      position: "absolute",
+      bottom: isMobile ? "0px" : "5px",
+      right: isMobile ? "calc(50% - 75px)" : "calc(50% - 85px)",
+      background: "white",
+      borderRadius: "50%",
+      padding: isMobile ? "6px" : "8px",
+      boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
+      border: "3px solid white",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      zIndex: 10,
+    },
+    swapLogoProfile: {
+      height: isMobile ? "32px" : "36px",
+      width: isMobile ? "32px" : "36px",
+      objectFit: "contain",
     },
     creditText: {
       display: "flex",
@@ -772,26 +798,33 @@ export default function TagCard() {
           {/* Tag Card */}
           <div ref={cardRef} style={styles.tagCard}>
             <div style={styles.tagCardContent}>
-              {/* Top Logo Section */}
+              {/* Top Section */}
               <div style={styles.topLogoSection}>
-                <img 
-                  src={swapLogo} 
-                  alt="Swap" 
-                  style={styles.swapLogoTop}
-                />
                 <div style={styles.badge}>
                   <span style={styles.badgeText}>🇳🇬 NHF COHORT II</span>
                 </div>
                 <h2 style={styles.fellowTitle}>National Health<br />Fellow</h2>
               </div>
 
-              {image && (
-                <img
-                  src={image}
-                  alt="Profile"
-                  style={styles.profileImage}
-                />
-              )}
+              {/* Profile Section with Logo Badge */}
+              <div style={styles.profileSection}>
+                {image && (
+                  <>
+                    <img
+                      src={image}
+                      alt="Profile"
+                      style={styles.profileImage}
+                    />
+                    <div style={styles.swapLogoBadge}>
+                      <img 
+                        src={swapLogo} 
+                        alt="Swap" 
+                        style={styles.swapLogoProfile}
+                      />
+                    </div>
+                  </>
+                )}
+              </div>
 
               <div style={styles.announcementMessage}>
                 <p style={styles.announcementText}>
