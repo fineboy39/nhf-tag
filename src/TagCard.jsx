@@ -140,7 +140,7 @@ export default function TagCard() {
         await navigator.share({
           files: [file],
           title: "NHF Cohort II Selection Announcement",
-          text: `I'm thrilled and grateful to share that I've been selected as a National Health Fellow – Cohort II! 🙌💚\n\nJoin me in strengthening Primary Healthcare! - ${capitalizeName(name)} from ${capitalizeAll(lga)}, ${capitalizeAll(stateName)}`,
+          text: `I'm thrilled and grateful to share that I've been selected as a National Health Fellow – Cohort II! 🙌💚\n\nJoin me in strengthening Primary Healthcare! - ${capitalizeName(name)} from ${capitalizeAll(lga)}, ${capitalizeAll(stateName)}\n\nGenerate yours: https://nhf-tag.vercel.app/`,
         });
         setShowSuccess(true);
         setTimeout(() => setShowSuccess(false), 3000);
@@ -319,7 +319,7 @@ export default function TagCard() {
       alignItems: "center",
       gap: "6px",
     },
-    // WhatsApp Status optimized card (9:16 aspect ratio)
+    // WhatsApp Status optimized card (9:16 aspect ratio) - Background more visible
     tagCard: {
       width: "100%",
       maxWidth: isMobile ? "360px" : "405px",
@@ -337,8 +337,8 @@ export default function TagCard() {
       border: "1px solid rgba(255,255,255,0.2)",
     },
     tagCardContent: {
-      background: "linear-gradient(180deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.65) 100%)",
-      backdropFilter: "blur(3px)",
+      background: "linear-gradient(180deg, rgba(255,255,255,0.45) 0%, rgba(255,255,255,0.35) 100%)",
+      backdropFilter: "blur(2px)",
       height: "100%",
       padding: isMobile ? "16px 12px 14px" : "20px 16px 18px",
       display: "flex",
@@ -461,7 +461,7 @@ export default function TagCard() {
   fontSize: isMobile ? "8px" : "10px",
   color: "#475569",
   marginTop: isMobile ? "6px" : "8px",
-  marginBottom: isMobile ? "6px" : "10px", // 👈 add this
+  marginBottom: isMobile ? "6px" : "10px",
   fontWeight: "600",
   letterSpacing: "0.15px",
   background: "rgba(255,255,255,0.8)",
@@ -883,7 +883,7 @@ export default function TagCard() {
                 <div style={styles.developerCredit}>
                   <div style={styles.creditText}>
                     <span style={{ fontSize: isMobile ? "7px" : "9px" }}>
-                      By <span style={styles.developerName}>Shamsu Nafiu</span> (II)
+                      Developed by <span style={styles.developerName}>Shamsu Nafiu</span> (Cohort II - Jigawa)
                     </span>
                     <div style={styles.socialHandles}>
                       <span style={styles.socialLink}>
