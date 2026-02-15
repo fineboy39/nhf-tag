@@ -629,7 +629,7 @@ export default function TagCard() {
         {/* Right Section - Tag (Now second on mobile) */}
         <div style={styles.rightSection}>
           <label style={{ ...styles.label, marginBottom: "16px", textAlign: isMobile ? "center" : "left" }}>
-            Preview (WhatsApp Status Size)
+            Tag Preview scroll down 
           </label>
           
           {/* Tag Card */}
